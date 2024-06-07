@@ -7,7 +7,7 @@ A simple To-Do List GUI
 
 ## Screenshots
 
-![Screenshots](https://github.com/saleemtoure/to-do-list/screenshots.png)
+![Screenshots](https://github.com/saleemtoure/to-do-list/blob/main/screenshots.png)
 
 ## Features
 
