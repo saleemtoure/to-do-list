@@ -7,7 +7,7 @@ A simple To-Do List GUI
 
 ## Screenshots
 
-![Screenshots](https://github.com/saleemtoure/python-GUI/blob/main/to-do-list/d.png)
+![Screenshots](https://github.com/saleemtoure/to-do-list/blob/main/screenshots.png)
 
 ## Features
 
