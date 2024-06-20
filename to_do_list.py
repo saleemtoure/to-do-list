@@ -40,6 +40,7 @@ class ListGUI:
 
     def add_objective(self, event):
         self.listbox.insert("", "end", text=self.entrybox.get())
+        self.entrybox.delete(0, tk.END)
 
     def delete_objective(self, event):
         if self.listbox.selection() == ():
