@@ -12,6 +12,8 @@ A simple To-Do-List application made in Python with Tkinter
 - Click to delete task
 - Save list to .txt file (Save on close)
 - Load .txt file to insert a list
+
+- v1.1 Autosave
 ## Modules
 
 - Tkinter (Internal, for a simple GUI)
