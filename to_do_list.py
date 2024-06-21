@@ -21,10 +21,10 @@ class ListGUI:
         self.entrybox.bind("<Return>", self.add_objective)
         self.entrybox.pack(padx=10, pady=10)
 
-        self.listbox = ttk.Treeview(self.root, show="tree")
-        self.listbox.pack(padx=10, pady=10, fill="both", expand=True)
+        self.treeView = ttk.Treeview(self.root, show="tree")
+        self.treeView.pack(padx=10, pady=10, fill="both", expand=True)
 
-        self.listbox.bind("<<TreeviewSelect>>", self.delete_objective)
+        self.treeView.bind("<<TreeviewSelect>>", self.delete_objective)
 
         self.out_btn = ttk.Button(text="Save as txt file", command=self.save)
         self.out_btn.pack(pady=2)
@@ -39,28 +39,33 @@ class ListGUI:
         self.root.mainloop()
 
     def add_objective(self, event):
-        self.listbox.insert("", "end", text=self.entrybox.get())
+        self.treeView.insert("", "end", text=self.entrybox.get())
         self.entrybox.delete(0, tk.END)
 
     def delete_objective(self, event):
-        if self.listbox.selection() == ():
+        if self.treeView.selection() == ():
             pass
         else:
             if messagebox.askyesno(
                 title="Quit?", message="Do you want to delete this task?"
             ):
-                self.listbox.delete(self.listbox.selection())
+                self.treeView.delete(self.treeView.selection())
 
     def save(self):
+        desktop_file_path = os.path.join(os.path.expanduser("~"), "Desktop")
+
         file_path = filedialog.asksaveasfilename(
-            defaultextension=".txt", filetypes=[("Text Files", "*.txt")]
+            initialfile="My To-Do-List",
+            initialdir=desktop_file_path,
+            defaultextension=".txt",
+            filetypes=[("Text Files", "*.txt")],
         )
         if file_path == "":
             pass
         elif os.path.exists(file_path):
             f = open(file_path, "w")
-            for task in self.listbox.get_children():
-                f.write(f"{self.listbox.item(task)['text']}\n")
+            for task in self.treeView.get_children():
+                f.write(f"{self.treeView.item(task)['text']}\n")
             f.close()
 
     def load(self):
@@ -71,15 +76,18 @@ class ListGUI:
             f = open(file_path, "r")
             self.reset()
             for line in f:
-                self.listbox.insert("", "end", text=line)
+                self.treeView.insert("", "end", text=line)
             f.close()
 
     def reset(self):
-        for task in self.listbox.get_children():
-            self.listbox.delete(task)
+        for task in self.treeView.get_children():
+            self.treeView.delete(task)
 
     def on_closing(self):
         if messagebox.askyesno(title="Quit?", message="Do you really want to quit?"):
+            if len(self.treeView.get_children()) != 0:
+                self.save()
+
             self.root.destroy()
 
 
