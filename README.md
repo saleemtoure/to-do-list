@@ -13,7 +13,9 @@ A simple To-Do-List application made in Python with Tkinter
 - Save list to .txt file (Save on close)
 - Load .txt file to insert a list
 
+### Updates
 - v1.1 Autosave
+  
 ## Modules
 
 - Tkinter (Internal, for a simple GUI)
