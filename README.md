@@ -12,7 +12,7 @@ A simple To-Do-List application made in Python with Tkinter
 ## Features
 
 - Click to delete task
-- Save list to .txt file
+- Save list to .txt file (Save on close)
 - Load .txt file to insert a list
 ## Modules
 
