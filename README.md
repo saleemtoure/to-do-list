@@ -3,10 +3,6 @@
 
 A simple To-Do-List application made in Python with Tkinter
 
-## Executable
-
-[Click here to download source code](https://github.com/saleemtoure/to-do-list/archive/refs/tags/v1.0.zip)
-
 ## Screenshots
 
 ![Screenshots](https://github.com/saleemtoure/to-do-list/blob/main/screenshots.png)
