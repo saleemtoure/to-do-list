@@ -1,7 +1,7 @@
 
 # To-Do List
 
-A simple To-Do List GUI
+A simple To-Do-List application made in Python with Tkinter
 
 
 
