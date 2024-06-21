@@ -67,7 +67,7 @@ class ListGUI:
             pass
         else:
             if messagebox.askyesno(
-                title="Quit?", message="Do you want to delete this task?"
+                title="Delete?", message="Do you want to delete this task?"
             ):
                 self.treeView.delete(self.treeView.selection()[0])
 
