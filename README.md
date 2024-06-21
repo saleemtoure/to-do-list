@@ -3,7 +3,9 @@
 
 A simple To-Do-List application made in Python with Tkinter
 
+## Executable
 
+[Click here to download .exe](https://github.com/saleemtoure/to-do-list/releases/download/v1.0/to_do_list.exe)
 
 ## Screenshots
 
