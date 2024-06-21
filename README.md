@@ -3,8 +3,6 @@
 
 A simple To-Do-List application made in Python with Tkinter
 
-
-
 ## Screenshots
 
 ![Screenshots](https://github.com/saleemtoure/to-do-list/blob/main/screenshots.png)
@@ -19,3 +17,5 @@ A simple To-Do-List application made in Python with Tkinter
 - Tkinter (Internal, for a simple GUI)
 - sv_ttk (External, Sun Valley ttk theme for GUI)
 - Os (Internal, for path management)
+
+*A whole year of commit history lost due to deletion of the original repository
