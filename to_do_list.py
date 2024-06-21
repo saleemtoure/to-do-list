@@ -35,12 +35,15 @@ class ListGUI:
         self.clear_btn = ttk.Button(text="Clear", command=self.reset)
         self.clear_btn.pack(padx=10, pady=10)
 
+        self.saved = False
+
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
         self.root.mainloop()
 
     def add_objective(self, event):
         self.treeView.insert("", "end", text=self.entrybox.get())
         self.entrybox.delete(0, tk.END)
+        self.saved = False
 
     def delete_objective(self, event):
         if self.treeView.selection() == ():
@@ -49,24 +52,28 @@ class ListGUI:
             if messagebox.askyesno(
                 title="Quit?", message="Do you want to delete this task?"
             ):
-                self.treeView.delete(self.treeView.selection())
+                self.treeView.delete(self.treeView.selection()[0])
+        self.saved = False
 
     def save(self):
         desktop_file_path = os.path.join(os.path.expanduser("~"), "Desktop")
 
         file_path = filedialog.asksaveasfilename(
-            initialfile="My To-Do-List",
+            initialfile="my-to-do-list",
             initialdir=desktop_file_path,
             defaultextension=".txt",
             filetypes=[("Text Files", "*.txt")],
         )
-        if file_path == "":
+
+        if not file_path:
             pass
-        elif os.path.exists(file_path):
-            f = open(file_path, "w")
-            for task in self.treeView.get_children():
-                f.write(f"{self.treeView.item(task)['text']}\n")
-            f.close()
+        else:
+            # print(file_path)
+            with open(file_path, "w") as f:
+                for task in self.treeView.get_children():
+                    f.write(f"{self.treeView.item(task)['text']}\n")
+
+            self.saved = True
 
     def load(self):
         file_path = filedialog.askopenfilename(filetypes=[("Text Files", "*.txt")])
@@ -78,14 +85,16 @@ class ListGUI:
             for line in f:
                 self.treeView.insert("", "end", text=line)
             f.close()
+        self.saved = True
 
     def reset(self):
         for task in self.treeView.get_children():
             self.treeView.delete(task)
+        self.saved = False
 
     def on_closing(self):
         if messagebox.askyesno(title="Quit?", message="Do you really want to quit?"):
-            if len(self.treeView.get_children()) != 0:
+            if len(self.treeView.get_children()) != 0 and self.saved == False:
                 self.save()
 
             self.root.destroy()
